@@ -1,0 +1,37 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ *= require jquery.datetimepicker
+ *= require normalize-css
+ *= require 1100
+ *= require header
+ *= require footer
+ *= require introjs
+ *= require responsive
+ *= require animate
+ *= require legacy/standard
+ *= require legacy/path
+ *= require legacy/upgrade
+ *= require legacy/welcome
+ *= require legacy/css
+ *= require legacy/daycares
+ *= require legacy/common
+ *= require legacy/header
+ *= require legacy/back-index
+ *= require legacy/back-one
+ *= require legacy/back-two
+ *= require legacy/back-three
+ *= require legacy/survey
+ *= require legacy/result
+ *= require version_2
+ */

@@ -1,0 +1,17 @@
+= content_for :page_title, 'Parent Dashboard'
+= content_for :previous_path, welcome_path
+
+.row
+  .eightcol
+    #main-menu
+      .menu-items
+        = link_to todos_path, class: 'todos', 'data-step': '14', 'data-intro': t('user_guide.menu.parent_todo') do
+          = image_tag 'todo.png'
+          %span= t('todos.todo')
+
+        = link_to list_messages_path(role: current_user.role, list_type: 'received'), class: 'messages', 'data-step': '15', 'data-intro': t('user_guide.menu.parent_message') do
+          = image_tag 'template-message.png'
+          %span= t('messages.message')
+
+  .fourcol.last.notifications-panel
+    = render 'notifications'

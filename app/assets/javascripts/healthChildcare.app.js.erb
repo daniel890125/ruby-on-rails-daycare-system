@@ -1,0 +1,110 @@
+healthChildcare.app =
+{
+    multiInput: function()
+    {
+        $('.tagsinput').tagsinput();
+    },
+
+    toggleMenu: function()
+    {
+        $('.dropdown').click(function()
+        {
+            $(this).toggleClass('open');
+        });
+    },
+
+    printTodo: function()
+    {
+        $('#print-todo').on('click', function()
+        {
+            window.print();
+            return false;
+        });
+    },
+
+    datepickers: function()
+    {
+        $('.datepicker').datetimepicker({
+            format: 'd/m/Y',
+            timepicker: false
+        });
+
+        $('.datetimepicker').datetimepicker({
+            formatDate: 'd-m-Y',
+            theme:'default'
+        });
+    },
+
+  showRegisteredChildcaresNotification: function() {
+    var beforeSignUpPath = /getting_started/g;
+    var afterSignUpPath = /welcome/g;
+    var newUser = $('input#notif_new_user').val() == 'true';
+    var showNotif = beforeSignUpPath.test(window.location.pathname) ||
+        (afterSignUpPath.test(window.location.pathname) && newUser);
+    var featuredDaycare = [];
+
+    if (showNotif) {
+      function fetchFeaturedDaycare() {
+        $.ajax(
+          {
+            url: '/api/daycares/featured_daycare',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data)
+            {
+              if ($.inArray(data.name, featuredDaycare) < 0 ) {
+                featuredDaycare.push(data.name);
+                $.notify({
+                  icon: "<%= asset_path('back_page.png') %>",
+                  message: data.name + " " + window.__trans['featured_daycare']
+                })
+              }
+              else if (featuredDaycare.length == data.set_size)
+                clearInterval(occasionalFetch);
+            }
+          })
+      }
+
+      occasionalFetch = setInterval(fetchFeaturedDaycare, 11000);
+    }
+  },
+
+  showUpgradedChildcaresNotification: function() {
+    var newPlan = $('input#notif_plan_id').val() || '';
+    var featuredDaycare = [];
+
+    if (newPlan != '') {
+      function fetchSimilarPlans() {
+        $.ajax(
+          {
+            url: '/api/daycares/by_plan?plan_id=' + newPlan,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data)
+            {
+              if ($.inArray(data.name, featuredDaycare) < 0 ) {
+                featuredDaycare.push(data.name);
+                $.notify({
+                  icon: "<%= asset_path('back_page.png')%>",
+                  message: data.name + " " + window.__trans['featured_daycare_by_plan']
+                })
+              }
+              else if (featuredDaycare.length == data.set_size)
+                clearInterval(occasionalFetch);
+            }
+          })
+      }
+
+      occasionalFetch = setInterval(fetchSimilarPlans, 5000);
+    }
+  },
+
+  addAnotherCertification: function() {
+    $('.add-certification').on('click', function() {
+      var html = $('#user-profile-certifications').html();
+      $(this).before(html);
+    });
+
+  }
+
+}

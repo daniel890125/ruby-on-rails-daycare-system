@@ -1,0 +1,55 @@
+.row.promo
+  .promo-img
+    = image_tag "mission_promo.jpg"
+    .promo-text
+      %h2= t('pages.mission_step.promo_header')
+      %p= t('pages.mission_step.promo_text')
+      %br
+      %h4.promo-subhead= t('pages.mission_step.promo_subhead')
+  / End Promo Area
+
+= render 'steps_navigation'
+
+.row.step-contents
+  %p
+    %span.heading-letter.heading F
+    = t('pages.mission_step.intro_1')
+  %p= t('pages.mission_step.intro_2')
+
+.row.step-contents
+  %h3.heading= t('pages.mission_step.scientific_fact')
+  %ul.scientific-facts
+    %li
+      %p= t('pages.mission_step.fact_1')
+    %li
+      %p= t('pages.mission_step.fact_2')
+    %li
+      %p= t('pages.mission_step.fact_3')
+
+.row.step-contents.children-risk-content
+  %h3.heading= t('pages.mission_step.children_risk')
+  %p= t('pages.mission_step.children_risk_1')
+  %p= t('pages.mission_step.children_risk_2')
+  %p= t('pages.mission_step.children_risk_3')
+  %p= t('pages.mission_step.children_risk_4')
+  %p= t('pages.mission_step.children_risk_5')
+
+.row.step-contents
+  %h3.heading= t('pages.mission_step.staff_parents_risk')
+  %p= t('pages.mission_step.staff_parents_risk_1')
+  %p= t('pages.mission_step.staff_parents_risk_2')
+  %p= t('pages.mission_step.staff_parents_risk_3')
+  %p= t('pages.mission_step.staff_parents_risk_4')
+
+.row.step-contents.next-step-content
+  .next-step
+    %h4= t('pages.mission_step.next_step_header')
+    %br
+    %p= t('pages.mission_step.next_step_text')
+
+.row.step-contents.mission-invite-content
+  %h3= t('pages.mission_step.mission_invite')
+  %br
+  %button.btn.hcc-btn
+    %a{'href': '#'}
+      = t('pages.mission_step.learn_more')
